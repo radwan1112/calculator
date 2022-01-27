@@ -33,13 +33,6 @@ function updateResultDisplay() {
 }
 
 function updateEquationDisplay() {
-  if (operation === "" && currentTotal === "") {
-    result.textContent = firstOperand;
-  } else if (operation !== "" && currentTotal === "") {
-    result.textContent = secondOperand;
-  } else if (currentTotal !== "") {
-    result.textContent = currentTotal;
-  }
   equation.textContent = `${firstOperand} ${operation} ${secondOperand}`;
 }
 
@@ -51,7 +44,7 @@ function calculate() {
       );
       updateResultDisplay();
       updateEquationDisplay();
-      reset();
+      increment();
       break;
     case "-":
       currentTotal = roundResult(
@@ -59,7 +52,7 @@ function calculate() {
       );
       updateResultDisplay();
       updateEquationDisplay();
-      reset();
+      increment();
       break;
 
     case "×":
@@ -68,7 +61,7 @@ function calculate() {
       );
       updateResultDisplay();
       updateEquationDisplay();
-      reset();
+      increment();
       break;
 
     case "÷":
@@ -77,7 +70,7 @@ function calculate() {
       );
       updateResultDisplay();
       updateEquationDisplay();
-      reset();
+      increment();
       break;
 
     case "%":
@@ -86,7 +79,7 @@ function calculate() {
       );
       updateResultDisplay();
       updateEquationDisplay();
-      reset();
+      increment();
       break;
   }
 }
@@ -127,6 +120,13 @@ function listen() {
     updateResultDisplay();
     updateEquationDisplay();
   });
+}
+
+function increment() {
+  enterNumber = "";
+  firstOperand = currentTotal;
+  secondOperand = "";
+  operation = "";
 }
 
 function reset() {
